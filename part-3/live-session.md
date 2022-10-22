@@ -30,15 +30,15 @@ cd part-3/
 
 ## Configurar GOGS
 
-URL -> http://192.168.56.10:3000
+URL -> http://gogs.acme.com/
 
 Seguir el wizard y crear un repositorio.
-- Seleccionar SQLlite
-- Como IP la que obteneis de `kubectl get svc`
+- Seleccionar SQLlite con ruta absoluta
+- Configurar la URL de la interfaz web igual al dominio `http://gogs.acme.com/`
 
 ## Configurar Jenkins
 
-URL -> http://192.168.56.10:8000
+URL -> http://jenkins.acme.com/
 
 1) `kubectl get pods`
 2) `kubectl logs -f jenkins-xxxxx`
@@ -48,8 +48,9 @@ Seguir el wizard.
 
 Plugins adicionales:
 
-- kubernetes
-- blueocean (opcional)
+- Kubernetes
+- Blue Ocean (opcional)
+- Web for Blue Ocean (opcional)
 
 ### Configurar Kubernetes
 
@@ -58,6 +59,7 @@ Jenkins > Configuration
 Add cloud:
 - Kubernetes Namespace: default
 - Jenkins URL: http://jenkins.default:8000
+- Crear credenciales de tipo Kubernetes
 
 ### Crear job
 
