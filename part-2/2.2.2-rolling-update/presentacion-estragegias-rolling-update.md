@@ -47,7 +47,7 @@ BBB
 ---
 # Rolling Update
 
-`kind create cluster --name produccion --config kind/cluster.yml`
+`kind create cluster --name produccion --config kind/cluster.yaml`
 
 ---
 ![bg auto opacity:.2](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)
