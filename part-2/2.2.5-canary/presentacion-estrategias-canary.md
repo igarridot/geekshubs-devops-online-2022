@@ -36,6 +36,7 @@ cd part-2/2.2.5-canary
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
+- `docker build -t localhost:5001/fifth-lb:v1 -f Dockerfile-fifth-lb .`
 - `docker build -t localhost:5001/fifth-app:v1 -f Dockerfile-fifth-app .`
 - Modificamos `index.html` y:
 - `docker build -t localhost:5001/fifth-app:v2 -f Dockerfile-fifth-app .`
@@ -47,6 +48,7 @@ Vamos a crear las imágenes de Docker necesarias primero:
 Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
+docker push localhost:5001/fifth-lb:v1
 docker push localhost:5001/fifth-app:v1
 docker push localhost:5001/fifth-app:v2
 ```
@@ -57,6 +59,10 @@ docker push localhost:5001/fifth-app:v2
 Vamos a desplegar la infraestructura
 
 `kubectl -n default apply -f fifth-app.yml`
+
+Y luego exponerla mediante el balanceador:
+
+`kubectl apply -f fifth-lb.yml`
 
 ---
 
