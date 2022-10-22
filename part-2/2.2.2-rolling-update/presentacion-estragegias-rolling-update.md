@@ -60,9 +60,9 @@ Creamos un clúster de Kubernetes con Kind
 Vamos a crear las imágenes de Docker necesarias primero:
 
 - `docker build -t localhost:5001/lb:v1 -f Dockerfile-lb .`
-- `docker build -t localhost:5001/myapp:v1 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/second-app:v1 -f Dockerfile-second-app .`
 - Modificamos `index.html` y:
-- `docker build -t localhost:5001/myapp:v2 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/second-app:v2 -f Dockerfile-second-app .`
 
 Y comprobamos con:
 
@@ -75,8 +75,8 @@ Vamos a subir las imágenes de docker al registry local para que kubernetes las 
 
 ```
 docker push localhost:5001/lb:v1
-docker push localhost:5001/myapp:v1
-docker push localhost:5001/myapp:v2
+docker push localhost:5001/second-app:v1
+docker push localhost:5001/second-app:v2
 ```
 
 ---
@@ -84,7 +84,7 @@ docker push localhost:5001/myapp:v2
 
 Es hora de desplegar nuestra aplicación. Primero la `v1`.
 
-`kubectl -n default apply -f myapp.yml`
+`kubectl -n default apply -f second-app.yml`
 
 Y luego exponerla mediante el balanceador:
 
@@ -102,7 +102,7 @@ Y luego exponerla mediante el balanceador:
 
 Ahora vamos a deplegar nuestra versión `v2`.
 
-- `kubectl edit deploy myapp`
+- `kubectl edit deploy second-app`
 
 y sustituimos `v1` por `v2` en el `tag` de la imagen del contenedor.
 

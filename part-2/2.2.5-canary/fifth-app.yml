@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-v1
+  name: fifth-app-v1
   labels:
-    app: myapp
+    app: fifth-app
     version: v1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: myapp
+      app: fifth-app
       version: v1
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: myapp
+        app: fifth-app
         version: v1
     spec:
       containers:
-      - name: myapp-v1
-        image: myapp:v1
+      - name: fifth-app-v1
+        image: fifth-app:v1
         ports:
         - containerPort: 9000
 
@@ -29,27 +29,27 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-v2
+  name: fifth-app-v2
   labels:
-    app: myapp
+    app: fifth-app
     version: v2
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: fifth-app
       version: v2
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: myapp
+        app: fifth-app
         version: v2
     spec:
       containers:
-      - name: myapp-v2
-        image: myapp:v2
+      - name: fifth-app-v2
+        image: fifth-app:v2
         ports:
         - containerPort: 9000
 
@@ -57,12 +57,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: fifth-app
 spec:
   selector:
-    app: myapp
-    version: v1
-  type: NodePort
+    app: fifth-app
+  type: ClusterIP
   externalIPs:
   - 192.168.56.10
   ports:

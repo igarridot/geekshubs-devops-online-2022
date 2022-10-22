@@ -32,37 +32,25 @@ Una vez pasamos de A a B, si tenemos problemas podemos hacer `roll back` instant
 ---
 # Blue/Green
 
-```
-vagrant up --provision-with microk8s
-vagrant ssh
-cp -a /vagrant/part-2/ .
-cd part-2/2.2.3-blue-green/
-```
+Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
----
-# Blue/Green
-
-Vamos a crear las imágenes de Docker necesarias primero:
-
-- `sudo docker build -t lb:v1 -f Dockerfile-lb .`
-- `sudo docker build -t myapp:v1 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/lb:v1 -f Dockerfile-lb .`
+- `docker build -t localhost:5001/third-app:v1 -f Dockerfile-third-app .`
 - Modificamos `index.html` y:
-- `sudo docker build -t myapp:v2 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/third-app:v2 -f Dockerfile-third-app .`
 
 ---
 # Blue/Green
-
-**ATENCIÓN**: Este paso únicamente es por usar `microk8s`.
 
 Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
 
 ```
 sudo docker save lb:v1 > lb:v1.tar
-sudo docker save myapp:v1 > myapp:v1.tar
-sudo docker save myapp:v2 > myapp:v2.tar
+sudo docker save third-app:v1 > third-app:v1.tar
+sudo docker save third-app:v2 > third-app:v2.tar
 microk8s.ctr image import lb:v1.tar
-microk8s.ctr image import myapp:v1.tar
-microk8s.ctr image import myapp:v2.tar
+microk8s.ctr image import third-app:v1.tar
+microk8s.ctr image import third-app:v2.tar
 ```
 
 ---
@@ -70,7 +58,7 @@ microk8s.ctr image import myapp:v2.tar
 
 Es hora de desplegar nuestra aplicación. Ahora vamos a deplegar la `v1` y la `v2` de forma simultanea, pero únicamente la `v1` recibe tráfico.
 
-`kubectl -n default apply -f myapp.yml`
+`kubectl -n default apply -f third-app.yml`
 
 Y luego exponerla mediante el balanceador:
 
@@ -82,19 +70,19 @@ Y luego exponerla mediante el balanceador:
 Tenemos `v1` recibiendo tráfico. Ahora es momento de cambiar a `v2`. Para ello:
 
 - Editamos el `service` para decirle que ahora conecte a los `pods` de `v2`.
-- `kubectl edit service myapp`
+- `kubectl edit service third-app`
 
 ---
 # Blue/Green
 ```
   selector:
-    app: myapp
+    app: third-app
     version: v1
 ```
 Se convierte en:
 ```
   selector:
-    app: myapp
+    app: third-app
     version: v2
 ```
 

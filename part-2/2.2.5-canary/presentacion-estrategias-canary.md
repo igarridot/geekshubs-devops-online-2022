@@ -41,9 +41,9 @@ cd part-2/2.2.5-canary
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
-- `sudo docker build -t myapp:v1 -f Dockerfile-myapp .`
+- `sudo docker build -t fifth-app:v1 -f Dockerfile-fifth-app .`
 - Modificamos `index.html` y:
-- `sudo docker build -t myapp:v2 -f Dockerfile-myapp .`
+- `sudo docker build -t fifth-app:v2 -f Dockerfile-fifth-app .`
 
 ---
 # Canary
@@ -53,10 +53,10 @@ Vamos a crear las imágenes de Docker necesarias primero:
 Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
 
 ```
-sudo docker save myapp:v1 > myapp:v1.tar
-sudo docker save myapp:v2 > myapp:v2.tar
-microk8s.ctr image import myapp:v1.tar
-microk8s.ctr image import myapp:v2.tar
+sudo docker save fifth-app:v1 > fifth-app:v1.tar
+sudo docker save fifth-app:v2 > fifth-app:v2.tar
+microk8s.ctr image import fifth-app:v1.tar
+microk8s.ctr image import fifth-app:v2.tar
 ```
 
 ---
@@ -64,7 +64,7 @@ microk8s.ctr image import myapp:v2.tar
 
 Vamos a desplegar la infraestructura
 
-`kubectl -n default apply -f myapp.yml`
+`kubectl -n default apply -f fifth-app.yml`
 
 ---
 
@@ -79,20 +79,20 @@ Tenemos ahora 3 réplicas de `v1` y 1 réplica de `v2`. Esto significa que:
 
 Para ver los pods que están en un `label`.
 
-`kubectl get pod -l app=myapp`
+`kubectl get pod -l app=fifth-app`
 
 ```
-vagrant@ubuntu-bionic:~/canary$ kubectl get pod -l app=myapp
+vagrant@ubuntu-bionic:~/canary$ kubectl get pod -l app=fifth-app
 NAME                        READY   STATUS    RESTARTS   AGE
-myapp-v1-6d9ddff5c6-259dp   1/1     Running   0          3m1s
-myapp-v1-6d9ddff5c6-btx74   1/1     Running   0          3m1s
-myapp-v1-6d9ddff5c6-njndx   1/1     Running   0          3m1s
-myapp-v2-6c45c99f45-f2w2k   1/1     Running   0          3m1s
+fifth-app-v1-6d9ddff5c6-259dp   1/1     Running   0          3m1s
+fifth-app-v1-6d9ddff5c6-btx74   1/1     Running   0          3m1s
+fifth-app-v1-6d9ddff5c6-njndx   1/1     Running   0          3m1s
+fifth-app-v2-6c45c99f45-f2w2k   1/1     Running   0          3m1s
 ```
 
 ---
 # Canary
-- `kubectl get service myapp`
+- `kubectl get service fifth-app`
 - `watch -d -n 1 'curl -s serviceIP'`
 
 ---
@@ -100,8 +100,8 @@ myapp-v2-6c45c99f45-f2w2k   1/1     Running   0          3m1s
 
 Ahora podemos jugar con los % de cada una de las versiones.
 
-- `kubectl scale deployment myapp-v2 --replicas=2`
-- `kubectl scale deployment myapp-v1 --replicas=2`
+- `kubectl scale deployment fifth-app-v2 --replicas=2`
+- `kubectl scale deployment fifth-app-v1 --replicas=2`
 
 Con estos cambios lo balanceamos 50/50
 
@@ -110,8 +110,8 @@ Con estos cambios lo balanceamos 50/50
 
 Hasta finalmente:
 
-- `kubectl scale deployment myapp-v2 --replicas=4`
-- `kubectl scale deployment myapp-v1 --replicas=0`
+- `kubectl scale deployment fifth-app-v2 --replicas=4`
+- `kubectl scale deployment fifth-app-v1 --replicas=0`
 
 ---
 ![bg opacity:.2](https://imagenes.20minutos.es/files/image_656_370/uploads/imagenes/2019/05/21/957237.jpg)

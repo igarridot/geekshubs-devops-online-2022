@@ -1,7 +1,7 @@
 FROM nginx:1.17.8-alpine
 
 # Copiar el site conf
-COPY myapp.conf /etc/nginx/conf.d/default.conf
+COPY first-app.conf /etc/nginx/conf.d/default.conf
 
 # Crear carpeta para mi aplicación
 RUN mkdir -p /www/data

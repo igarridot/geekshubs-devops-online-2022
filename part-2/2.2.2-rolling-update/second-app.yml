@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: second-app
   labels:
-    app: myapp
+    app: second-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: myapp
+      app: second-app
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: myapp
+        app: second-app
     spec:
       containers:
-      - name: myapp
-        image: localhost:5001/myapp:v1
+      - name: second-app
+        image: localhost:5001/second-app:v1
         ports:
         - containerPort: 9000
 
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: second-app
 spec:
   selector:
-    app: myapp
+    app: second-app
   ports:
     - protocol: TCP
       port: 9000

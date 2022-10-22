@@ -47,8 +47,8 @@ This message shows that your installation appears to be working correctly.
 Construimos el contenedor de nuestra aplicación y le decimos a docker que la ejecute:
 
 ```
-docker build -t myapp:v1 .
-docker run --rm -d -p 8080:80 myapp:v1
+docker build -t first-app:v1 .
+docker run --rm -d -p 8080:80 first-app:v1
 ```
 
 ---
@@ -80,7 +80,7 @@ Y sustituimos `<p>Version 1.0</p>` por `<p>Version 2.0</p>`
 
 Entonces hacemos `build` de nuestra nueva versión.
 
-`docker build -t myapp:v2 .`
+`docker build -t first-app:v2 .`
 
 ---
 # Recreate
@@ -93,7 +93,7 @@ Ahora paramos el contenedor con la versión 1.
 
 Y lanzamos la v2:
 
-`docker run --rm -d -p 8080:80 myapp:v2`
+`docker run --rm -d -p 8080:80 first-app:v2`
 
 Y comprobamos de nuevo el output:
 

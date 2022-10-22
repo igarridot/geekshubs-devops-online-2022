@@ -1,27 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-v1
+  name: fourth-app-v1
   labels:
-    app: myapp
+    app: fourth-app
     version: v1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: fourth-app
       version: v1
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: myapp
+        app: fourth-app
         version: v1
     spec:
       containers:
-      - name: myapp-v1
-        image: myapp:v1
+      - name: fourth-app-v1
+        image: localhost:5001/fourth-app:v1
         ports:
         - containerPort: 9000
 
@@ -29,27 +29,27 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-v2
+  name: fourth-app-v2
   labels:
-    app: myapp
+    app: fourth-app
     version: v2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: fourth-app
       version: v2
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: myapp
+        app: fourth-app
         version: v2
     spec:
       containers:
-      - name: myapp-v2
-        image: myapp:v2
+      - name: fourth-app-v2
+        image: localhost:5001/fourth-app:v2
         ports:
         - containerPort: 9000
 
@@ -57,10 +57,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: fourth-app
 spec:
   selector:
-    app: myapp
+    app: fourth-app
     version: v1
   type: ClusterIP
   ports:
@@ -72,10 +72,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-v2
+  name: fourth-app-v2
 spec:
   selector:
-    app: myapp
+    app: fourth-app
     version: v2
   type: ClusterIP
   ports:

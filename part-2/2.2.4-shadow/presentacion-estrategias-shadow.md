@@ -42,9 +42,9 @@ cd part-2/2.2.4-shadow/
 Vamos a crear las imágenes de Docker necesarias primero:
 
 - `sudo docker build -t lb:v1 -f Dockerfile-lb .`
-- `sudo docker build -t myapp:v1 -f Dockerfile-myapp .`
+- `sudo docker build -t fourth-app:v1 -f Dockerfile-fourth-app .`
 - Modificamos `index.html` y:
-- `sudo docker build -t myapp:v2 -f Dockerfile-myapp .`
+- `sudo docker build -t fourth-app:v2 -f Dockerfile-fourth-app .`
 
 ---
 # Shadow
@@ -54,11 +54,11 @@ Vamos a crear las imágenes de Docker necesarias primero:
 Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
 
 ```
-sudo docker save myapp:v1 > myapp:v1.tar
-sudo docker save myapp:v2 > myapp:v2.tar
+sudo docker save fourth-app:v1 > fourth-app:v1.tar
+sudo docker save fourth-app:v2 > fourth-app:v2.tar
 sudo docker save lb:v1 > lb:v1.tar
-microk8s.ctr image import myapp:v1.tar
-microk8s.ctr image import myapp:v2.tar
+microk8s.ctr image import fourth-app:v1.tar
+microk8s.ctr image import fourth-app:v2.tar
 microk8s.ctr image import lb:v1.tar
 ```
 
@@ -67,7 +67,7 @@ microk8s.ctr image import lb:v1.tar
 
 Vamos a desplegar la infraestructura
 
-`kubectl -n default apply -f myapp.yml`
+`kubectl -n default apply -f fourth-app.yml`
 
 Y luego exponerla mediante el balanceador:
 
@@ -81,7 +81,7 @@ Utilizamos `goreplay` como _sidecar_ de nginx para hacer _forward_ de las reques
 ```
 - name: goreplay
     image: iam404/goreplay:v1.0.0_x64
-    args: ["--input-raw", ":80",  "--output-http", "myapp-v2.default:9000"]
+    args: ["--input-raw", ":80",  "--output-http", "fourth-app-v2.default:9000"]
 ```
 
 ---
@@ -89,8 +89,8 @@ Utilizamos `goreplay` como _sidecar_ de nginx para hacer _forward_ de las reques
 
 Veamos el shadow en acción:
 
-- `kubectl logs -f myapp-v2-xxxx`
-- `kubectl logs -f myapp-v1-xxxx`
+- `kubectl logs -f fourth-app-v2-xxxx`
+- `kubectl logs -f fourth-app-v1-xxxx`
 
 y hagamos peticiones:
 
