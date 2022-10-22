@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  gogs:
+    image: gogs/gogs
+    volumes:
+    - gogs:/data
+    ports:
+    - "10022:22"
+    - "9001:3000"
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - "9000:8080"
+    - "50000:50000"
+    volumes:
+    - jenkins:/var/jenkins_home
+    - /var/run/docker.sock:/var/run/docker.sock
+  registry:
+    image: registry
+    volumes:
+    - registry:/var/lib/registry
+    ports:
+    - 5000:5000
+
+volumes:
+  gogs: {}
+  jenkins: {}
+  registry: {}
