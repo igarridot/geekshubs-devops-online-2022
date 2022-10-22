@@ -33,7 +33,7 @@ Apagar y encender.
 ---
 # Recreate
 
-- `sudo docker run hello-world`
+- `docker run hello-world`
 
 ```
 Hello from Docker!
