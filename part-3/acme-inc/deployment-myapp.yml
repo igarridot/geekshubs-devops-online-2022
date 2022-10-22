@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: localhost:32000/app:.TAG
+        image: localhost:5001/app:.TAG
         imagePullPolicy: Always
         ports:
         - containerPort: 9000

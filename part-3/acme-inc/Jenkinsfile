@@ -51,7 +51,7 @@ spec:
         steps {
             container('docker') {
                 sh """
-                    docker build -t localhost:32000/app:$BUILD_NUMBER .
+                    docker build -t localhost:5001/app:$BUILD_NUMBER .
                 """
             }
         }
@@ -60,7 +60,7 @@ spec:
         steps {
             container('docker') {
                 sh """
-                    docker push localhost:32000/app:$BUILD_NUMBER
+                    docker push localhost:5001/app:$BUILD_NUMBER
                 """
             }
         }
@@ -68,7 +68,7 @@ spec:
             always {
                 container('docker') {
                     sh """
-                        docker rmi localhost:32000/app:$BUILD_NUMBER
+                        docker rmi localhost:5001/app:$BUILD_NUMBER
                     """
                 }
             }

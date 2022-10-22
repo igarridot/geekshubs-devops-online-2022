@@ -37,8 +37,17 @@ nodes:
     hostPort: 443
     protocol: TCP
 - role: worker
+  extraMounts:
+  - hostPath: /var/run/docker.sock
+    containerPath: /var/run/docker.sock
 - role: worker
+  extraMounts:
+  - hostPath: /var/run/docker.sock
+    containerPath: /var/run/docker.sock
 - role: worker
+  extraMounts:
+  - hostPath: /var/run/docker.sock
+    containerPath: /var/run/docker.sock
 EOF
 
 # connect the registry to the cluster network if not already connected
