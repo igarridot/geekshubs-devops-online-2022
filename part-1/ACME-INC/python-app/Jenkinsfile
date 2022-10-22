@@ -31,7 +31,7 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('http://localhost:5000') {
+                    docker.withRegistry('http://concorde.antiguonia:5000') {
                         dockerImage.push()
                     }
                 }

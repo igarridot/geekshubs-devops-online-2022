@@ -4,19 +4,11 @@
 docker-compose -f docker-compose.yml up --build
 ```
 
-## Jenkins
-
-Seguir el wizard. (En el output de la consola saldrá el token)
-
-## Registry
-
-No hay que hacer ningún setup adicional
-
 ## Gogs
 
-Seguir el wizard y crear un repositorio.
+Seleccionar SQLlite como base de datos y utilizar una ruta absoluta:
 
-Seleccionar SQLlite como base de datos.
+![Gogs DB config](../../../img/gogs_db_config.png)
 
 Configurar URL del servicio:
 
@@ -25,3 +17,15 @@ Configurar URL del servicio:
 Configurar cuenta de administrador:
 
 ![Gogs Admin account setup](../../../img/gogs_admin.png)
+
+Crear un repositorio para acme-inc.
+
+## Jenkins
+
+Seguir el wizard. (En el output de la consola saldrá el token)
+Instalar los plugins `docker`, `Docker Pipeline`, `docker-build-step` y reiniciar Jenkins.
+Añadir un nuevo pipeline de tipo `Multibranch Pipeline` apuntando al repositorio de Gogs mediante HTTP utilizando credenciales.
+
+## Registry
+
+No hay que hacer ningún setup adicional

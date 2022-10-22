@@ -3,6 +3,7 @@ version: '3'
 services:
   gogs:
     image: gogs/gogs
+    restart: always
     volumes:
     - gogs:/data
     ports:
@@ -12,6 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     ports:
     - "9000:8080"
     - "50000:50000"
@@ -20,6 +22,7 @@ services:
     - /var/run/docker.sock:/var/run/docker.sock
   registry:
     image: registry
+    restart: always
     volumes:
     - registry:/var/lib/registry
     ports:
