@@ -16,9 +16,12 @@ spec:
     spec:
       containers:
       - name: loadbalancer
-        image: localhost:5001/lb:v1
+        image: fourth-lb:v1
         ports:
         - containerPort: 80
+      - name: goreplay
+        image: iam404/goreplay:v1.0.0_x64
+        args: ["--input-raw", ":80",  "--output-http", "fourth-app-v2.default:9000"]
 
 ---
 apiVersion: v1

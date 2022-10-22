@@ -27,14 +27,14 @@ Una vez pasamos de A a B, si tenemos problemas podemos hacer `roll back` instant
 
 - Sin _downtime_
 - Cambio de A a B
-- Rollback inmediato
+- Rolthird-lback inmediato
 
 ---
 # Blue/Green
 
 Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
-- `docker build -t localhost:5001/lb:v1 -f Dockerfile-lb .`
+- `docker build -t localhost:5001/third-lb:v1 -f Dockerfile-third-lb .`
 - `docker build -t localhost:5001/third-app:v1 -f Dockerfile-third-app .`
 - Modificamos `index.html` y:
 - `docker build -t localhost:5001/third-app:v2 -f Dockerfile-third-app .`
@@ -45,7 +45,7 @@ Vamos a subir las imágenes de docker al registry local para que kubernetes las 
 Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
-docker push localhost:5001/lb:v1
+docker push localhost:5001/third-lb:v1
 docker push localhost:5001/third-app:v1
 docker push localhost:5001/third-app:v2
 ```
@@ -59,7 +59,7 @@ Es hora de desplegar nuestra aplicación. Ahora vamos a deplegar la `v1` y la `v
 
 Y luego exponerla mediante el balanceador:
 
-`kubectl apply -f lb.yml`
+`kubectl apply -f third-lb.yml`
 
 ---
 # Blue/Green

@@ -41,7 +41,7 @@ cd part-2/2.2.4-shadow/
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
-- `sudo docker build -t lb:v1 -f Dockerfile-lb .`
+- `sudo docker build -t fourth-lb:v1 -f Dockerfile-fourth-lb .`
 - `sudo docker build -t fourth-app:v1 -f Dockerfile-fourth-app .`
 - Modificamos `index.html` y:
 - `sudo docker build -t fourth-app:v2 -f Dockerfile-fourth-app .`
@@ -56,10 +56,10 @@ Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
 ```
 sudo docker save fourth-app:v1 > fourth-app:v1.tar
 sudo docker save fourth-app:v2 > fourth-app:v2.tar
-sudo docker save lb:v1 > lb:v1.tar
+sudo docker save fourth-lb:v1 > fourth-lb:v1.tar
 microk8s.ctr image import fourth-app:v1.tar
 microk8s.ctr image import fourth-app:v2.tar
-microk8s.ctr image import lb:v1.tar
+microk8s.ctr image import fourth-lb:v1.tar
 ```
 
 ---
@@ -71,7 +71,7 @@ Vamos a desplegar la infraestructura
 
 Y luego exponerla mediante el balanceador:
 
-`kubectl apply -f lb.yml`
+`kubectl apply -f fourth-lb.yml`
 
 ---
 # Shadow
