@@ -20,7 +20,7 @@ marp: true
 - Administrador de redes en Consum Cooperativa
 - Investigador en Universitat Politècnica de València
 - Administrador de sistemas en Onestic
-- SRE en Mercadona Tech
+- Líder del equipo SRE y mánager de ingeniería en Mercadona Tech
 
 ---
 # Dinámica de clase

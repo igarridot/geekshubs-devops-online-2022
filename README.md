@@ -19,7 +19,7 @@ Segunda sesión: 2022-10-29
     - Flujo de trabajo con contenedores.
     - ¿Cómo es el flujo de desarrollo en Mercadona Tech?
 
-## Requerimientos
+# Requerimientos
 
 Principalmente vamos a usar `docker`. Si tu sistema operativo es Linux o macOS no tendrás grandes problemas ya que funciona *algo* mejor que en Windows.
 
@@ -29,13 +29,12 @@ Para instalarlo podemos seguir las guías oficiales:
 - macOS: https://docs.docker.com/docker-for-mac/install/
 - Linux (ubuntu): https://docs.docker.com/engine/install/ubuntu/
 
-También vamos a utilizar máquinas virtuales, así que necesitamos tener instalado:
+También vamos a utilizar Kubernetes dentro de Docker, así que necesitamos tener instalado:
 
-- VirtualBox + Guest Additions: https://www.virtualbox.org/wiki/Downloads
-- Vagrant: https://www.vagrantup.com/downloads
-    - Usaremos Ubuntu 20.04 LTS como OS base. Podéis ejecutar el siguiente comando para descargar la plantilla: `vagrant box add ubuntu/focal64`
+- Golang: https://go.dev/doc/install
+- Kind (Kubernetes In Docker): https://kind.sigs.k8s.io/docs/user/quick-start/#installation 
 
-En la segunda sesión tocaremos algo de Kubernetes y para que sea más fácil lo haremos directamente sobre ubuntu 20.04. Si no sabes, no te preocupes. En la sesión podemos verlo.
+En la segunda sesión tocaremos algo de Kubernetes y para que sea más fácil lo haremos directamente sobre docker. Si no sabes o no lo consigues hacer funcionar, no te preocupes. En la sesión podemos verlo.
 
 Además es muy recomendable tener a mano un buen editor de código con el que nos sintamos cómodos. Personalmente recomiendo `vscode` de Microsoft. Es multiplataforma y tiene infinidad de plugins in configuraciones.
 

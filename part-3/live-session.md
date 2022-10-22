@@ -63,5 +63,21 @@ Add cloud:
 
 ### Crear job
 
-Crear nuevo _Multibranch pipeline_
+Crear nuevo `Multibranch pipeline` apuntando al repositorio de Gogs
 
+## Un poco de limpieza
+
+¡Hemos llegado al final! Y por el camino hemos construido y utilizado un montón de herramientas y contenedores.
+Para eliminarlos, ejecuta los siguientes comandos:
+
+```
+kind delete cluster --name produccion
+docker rm -f kind-registry
+```
+
+:warning: Estos comandos son un poco más "delicados" ya que eliminarán todas las imagenes, redes y volumenes de docker :warning:
+
+```
+docker system prune -fa
+docker volume prune
+```
