@@ -2,7 +2,7 @@
 
 ```
 Profesor: Iván Garrido Tamarit
-Primera sesión: 2022-10-29
+Primera sesión: 2022-10-28
 Segunda sesión: 2022-10-29
 ```
 
