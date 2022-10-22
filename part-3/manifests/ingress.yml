@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: acme
+  name: acme-services
 spec:
   rules:
   - host: jenkins.acme.com
@@ -24,13 +24,3 @@ spec:
             name: gogs
             port:
               number: 3000
-  - host: www.acme.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: app
-            port:
-              number: 9090
