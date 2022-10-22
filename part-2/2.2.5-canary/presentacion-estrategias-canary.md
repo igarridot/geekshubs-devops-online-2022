@@ -26,13 +26,8 @@ marp: true
 - Nos permite probar con tráfico real la versión en un % del tráfico.
 - Rollback inmediato.
 
----
-# Canary
-
+:warning: Cambia al directorio del ejercicio :warning:
 ```
-vagrant up --provision-with microk8s
-vagrant ssh
-cp -a /vagrant/part-2/ .
 cd part-2/2.2.5-canary
 ```
 
@@ -41,22 +36,19 @@ cd part-2/2.2.5-canary
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
-- `sudo docker build -t fifth-app:v1 -f Dockerfile-fifth-app .`
+- `docker build -t localhost:5001/fifth-app:v1 -f Dockerfile-fifth-app .`
 - Modificamos `index.html` y:
-- `sudo docker build -t fifth-app:v2 -f Dockerfile-fifth-app .`
+- `docker build -t localhost:5001/fifth-app:v2 -f Dockerfile-fifth-app .`
 
 ---
 # Canary
 
-**ATENCIÓN**: Este paso únicamente es por usar `microk8s`.
 
-Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
+Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
-sudo docker save fifth-app:v1 > fifth-app:v1.tar
-sudo docker save fifth-app:v2 > fifth-app:v2.tar
-microk8s.ctr image import fifth-app:v1.tar
-microk8s.ctr image import fifth-app:v2.tar
+docker push localhost:5001/fifth-app:v1
+docker push localhost:5001/fifth-app:v2
 ```
 
 ---
@@ -93,7 +85,7 @@ fifth-app-v2-6c45c99f45-f2w2k   1/1     Running   0          3m1s
 ---
 # Canary
 - `kubectl get service fifth-app`
-- `watch -d -n 1 'curl -s serviceIP'`
+- `watch -d -n 1 'curl -s http://localhost/'`
 
 ---
 # Canary

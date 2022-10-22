@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: fifth-app-v1
-        image: fifth-app:v1
+        image: localhost:5001/fifth-app:v1
         ports:
         - containerPort: 9000
 
@@ -49,7 +49,7 @@ spec:
     spec:
       containers:
       - name: fifth-app-v2
-        image: fifth-app:v2
+        image: localhost:5001/fifth-app:v2
         ports:
         - containerPort: 9000
 
