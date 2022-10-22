@@ -28,6 +28,9 @@ rules:
 - apiGroups: [""]
   resources: ["services"]
   verbs: ["create","get","list","patch","update","watch"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["create","get","list","patch","update","watch"]
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
