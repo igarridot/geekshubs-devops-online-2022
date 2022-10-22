@@ -6,16 +6,26 @@
 
 `./kind/cluster.sh`
 
-## Instalar software que necesitaremos
+## Requisitos del ejercicio
+
+Vamos a imitar un entorno de producción con múltiples dominios para las aplicaciones del stack.
+Si tienes gestor de DNS en tu red pridada, ¡genial! aprovéchalo.
+Si no, puedes añadir los siguientes dominios en el fichero `/etc/hosts`:
+
+```
+127.0.0.1 www.acme.com gogs.acme.com jenkins.acme.com
+```
+
 
 :warning: Cambia al directorio del ejercicio :warning:
 ```
 cd part-3/
 ```
 
-1) `kubectl apply -f manifests/gogs.yml`
-2) `kubectl apply -f manifests/jenkins-sa.yml`
-3) `kubectl apply -f manifests/jenkins.yml`
+1) `kubectl apply -f manifests/ingress.yml`
+2) `kubectl apply -f manifests/gogs.yml`
+3) `kubectl apply -f manifests/jenkins-sa.yml`
+4) `kubectl apply -f manifests/jenkins.yml`
 
 
 ## Configurar GOGS

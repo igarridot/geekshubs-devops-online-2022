@@ -4,22 +4,29 @@ metadata:
   name: acme
 spec:
   rules:
-  - http:
+  - host: jenkins.acme.com
+    http:
       paths:
-      - path: /jenkins
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: jenkins
             port:
               number: 8000
-      - path: /gogs
+  - host: gogs.acme.com
+    http:
+      paths:
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: gogs
             port:
               number: 3000
+  - host: www.acme.com
+    http:
+      paths:
       - path: /
         pathType: Prefix
         backend:
