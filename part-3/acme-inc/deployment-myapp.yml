@@ -32,11 +32,8 @@ kind: Service
 metadata:
   name: app
 spec:
-  externalIPs:
-  - 192.168.56.10
   selector:
     app: app
-  type: ClusterIP
   ports:
     - protocol: TCP
       port: 9090

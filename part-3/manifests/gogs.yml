@@ -5,25 +5,16 @@ metadata:
   namespace: default
   labels:
     service: gogs
-  annotations:
 spec:
   ports:
   - port: 3000
     targetPort: 3000
     protocol: TCP
     name: gogs-ui
-  - port: 3001
-    targetPort: 22
-    protocol: TCP
-    name: gogs-ssh
-  externalIPs:
-  - 192.168.56.10
   selector:
     service: gogs
-  type: ClusterIP
 
 ---
-
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -69,9 +60,6 @@ spec:
         - containerPort: 3000
           protocol: TCP
           name: http
-        - containerPort: 22
-          protocol: TCP
-          name: ssh
         volumeMounts:
         - mountPath: /data
           name: gogs-data

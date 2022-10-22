@@ -5,7 +5,6 @@ metadata:
   namespace: default
   labels:
     service: jenkins
-  annotations:
 spec:
   ports:
   - port: 8000
@@ -16,11 +15,8 @@ spec:
     targetPort: 50000
     protocol: TCP
     name: jenkins-admin
-  externalIPs:
-  - 192.168.56.10
   selector:
     service: jenkins
-  type: ClusterIP
 
 ---
 

@@ -1,17 +1,21 @@
 # Construir un Devops pipeline
 
-## Levantar la máquina virtual (con vagrant)
+## Levantar un nuevo clúster de Kubernetes (con Kind)
 
-`vagrant up --provision-with microk8s`
+:warning: Lanza el comando desde la raíz del repositorio :warning:
+
+`./kind/cluster.sh`
 
 ## Instalar software que necesitaremos
 
-1) `vagrant ssh`
-2) `cp -ar /vagrant/part-3/manifests .`
-3) `cp -ar /vagrant/part-3/acme-inc .`
-4) `kubectl apply -f manifests/gogs.yml`
-5) `kubectl apply -f manifests/jenkins-sa.yml`
-6) `kubectl apply -f manifests/jenkins.yml`
+:warning: Cambia al directorio del ejercicio :warning:
+```
+cd part-3/
+```
+
+1) `kubectl apply -f manifests/gogs.yml`
+2) `kubectl apply -f manifests/jenkins-sa.yml`
+3) `kubectl apply -f manifests/jenkins.yml`
 
 
 ## Configurar GOGS
