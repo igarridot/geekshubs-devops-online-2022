@@ -373,6 +373,11 @@ spec:
     port: 443
     protocol: TCP
     targetPort: https
+  - appProtocol: http
+    name: registry
+    port: 5000
+    protocol: TCP
+    targetPort: registry
   selector:
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
@@ -481,6 +486,10 @@ spec:
         - containerPort: 443
           hostPort: 443
           name: https
+          protocol: TCP
+        - containerPort: 5000
+          hostPort: 5000
+          name: registry
           protocol: TCP
         - containerPort: 8443
           name: webhook
