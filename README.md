@@ -60,4 +60,4 @@ Si decidís usar vscode con el plugin de `marp` podeis llegar a ver todo el mate
 También encontraréis las transparencias en formato PDF en el directorio `materialPdf`.
 
 ----
-Geekhubs - DevOps Bootcamp 2021 - Iván Garrido
+Geekhubs - DevOps Bootcamp 2022 - Iván Garrido
