@@ -42,7 +42,6 @@ metadata:
   labels:
     service: jenkins
 spec:
-  serviceAccountName: jenkins
   revisionHistoryLimit: 1
   replicas: 1
   selector:
@@ -58,6 +57,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       restartPolicy: Always
+      serviceAccountName: jenkins
       containers:
       - name: application
         image: jenkins/jenkins:lts-alpine
