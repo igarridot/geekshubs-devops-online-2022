@@ -64,5 +64,5 @@ spec:
     version: v1
   ports:
     - protocol: TCP
-      port: 80
+      port: 9000
       targetPort: 9000

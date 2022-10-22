@@ -27,7 +27,10 @@ Una vez pasamos de A a B, si tenemos problemas podemos hacer `roll back` instant
 
 - Sin _downtime_
 - Cambio de A a B
-- Rolthird-lback inmediato
+- Rollback inmediato
+
+:warning: Cambia al directorio del ejericio :warning:
+`cd part-2/2.2.3-blue-green`
 
 ---
 # Blue/Green

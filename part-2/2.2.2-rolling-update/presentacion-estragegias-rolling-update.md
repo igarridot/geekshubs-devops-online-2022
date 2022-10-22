@@ -47,8 +47,13 @@ BBB
 ---
 # Rolling Update
 
+:warning: Ejecuta el siguiente comando desde la raíz del repositorio :warning:
+
 Creamos un clúster de Kubernetes con Kind
 `./kind/cluster.sh`
+
+:warning: Cambia al directorio del ejericio :warning:
+`cd part-2/2.2.2-rolling-update`
 
 ---
 ![bg auto opacity:.2](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)
@@ -63,10 +68,6 @@ Vamos a crear las imágenes de Docker necesarias primero:
 - `docker build -t localhost:5001/second-app:v1 -f Dockerfile-second-app .`
 - Modificamos `index.html` y:
 - `docker build -t localhost:5001/second-app:v2 -f Dockerfile-second-app .`
-
-Y comprobamos con:
-
-`docker images`
 
 ---
 # Rolling Update
@@ -122,3 +123,4 @@ y sustituimos `v1` por `v2` en el `tag` de la imagen del contenedor.
 Ejercicio:
 
 - Construir v3 y desplegarla.
+- Eliminar los componentes de esta aplicación de Kubernetes
