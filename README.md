@@ -2,8 +2,8 @@
 
 ```
 Profesor: Iván Garrido Tamarit
-Primera sesión: 2021-11-19
-Segunda sesión: 2021-11-20
+Primera sesión: 2022-10-29
+Segunda sesión: 2022-10-29
 ```
 
 ## Agenda
@@ -56,6 +56,8 @@ Si teneis curiosidad por la sintaxis de Marp, la tenéis [aquí](https://marpit.
 Si decidís usar vscode con el plugin de `marp` podeis llegar a ver todo el material en una sola ventana.
 
 ![](./img/entorno-trabajo.png)
+
+También encontraréis las transparencias en formato PDF en el directorio `materialPdf`.
 
 ----
 Geekhubs - DevOps Bootcamp 2021 - Iván Garrido
