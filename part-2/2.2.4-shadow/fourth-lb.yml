@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: loadbalancer
-        image: fourth-lb:v1
+        image: localhost:5001/fourth-lb:v1
         ports:
         - containerPort: 80
       - name: goreplay

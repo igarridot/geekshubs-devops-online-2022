@@ -26,13 +26,8 @@ marp: true
 - No afecta al tráfico de producción.
 - No es exactamente un despliegue.
 
----
-# Shadow
-
+:warning: Cambia al directorio del ejercicio :warning:
 ```
-vagrant up --provision-with microk8s
-vagrant ssh
-cp -a /vagrant/part-2/ .
 cd part-2/2.2.4-shadow/
 ```
 
@@ -41,25 +36,20 @@ cd part-2/2.2.4-shadow/
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
-- `sudo docker build -t fourth-lb:v1 -f Dockerfile-fourth-lb .`
-- `sudo docker build -t fourth-app:v1 -f Dockerfile-fourth-app .`
+- `docker build -t localhost:5001/fourth-lb:v1 -f Dockerfile-fourth-lb .`
+- `docker build -t localhost:5001/fourth-app:v1 -f Dockerfile-fourth-app .`
 - Modificamos `index.html` y:
-- `sudo docker build -t fourth-app:v2 -f Dockerfile-fourth-app .`
+- `docker build -t localhost:5001/fourth-app:v2 -f Dockerfile-fourth-app .`
 
 ---
 # Shadow
 
-**ATENCIÓN**: Este paso únicamente es por usar `microk8s`.
-
-Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
+Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
-sudo docker save fourth-app:v1 > fourth-app:v1.tar
-sudo docker save fourth-app:v2 > fourth-app:v2.tar
-sudo docker save fourth-lb:v1 > fourth-lb:v1.tar
-microk8s.ctr image import fourth-app:v1.tar
-microk8s.ctr image import fourth-app:v2.tar
-microk8s.ctr image import fourth-lb:v1.tar
+docker push localhost:5001/fourth-app:v1
+docker push localhost:5001/fourth-app:v2
+docker push localhost:5001/fourth-lb:v1
 ```
 
 ---
