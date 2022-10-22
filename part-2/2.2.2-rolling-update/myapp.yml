@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: kind-registry:5000/myapp:v1
+        image: localhost:5001/myapp:v1
         ports:
         - containerPort: 9000
 
@@ -30,9 +30,6 @@ metadata:
 spec:
   selector:
     app: myapp
-  type: ClusterIP
-  externalIPs:
-  - 192.168.56.10
   ports:
     - protocol: TCP
       port: 9000
