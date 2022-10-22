@@ -123,7 +123,6 @@ Hasta finalmente:
     - Ratio de errores
     - Rendimiento
     - Latencias
-    - ...
 - Riesgo bajo y controlado frente a fallos.
 
 ---
