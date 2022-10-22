@@ -33,12 +33,6 @@ Apagar y encender.
 ---
 # Recreate
 
-`vagrant up --provision-with docker`
-
----
-# Recreate
-
-- `vagrant ssh`
 - `sudo docker run hello-world`
 
 ```
@@ -50,22 +44,15 @@ This message shows that your installation appears to be working correctly.
 ---
 # Recreate
 
+Construimos el contenedor de nuestra aplicación y le decimos a docker que la ejecute:
+
 ```
-vagrant ssh
-sudo su -
-cd /vagrant/part-2/2.2.1-recreate/
-vim|nano Dockerfile
-vim|nano index.html
-vim|nano myapp.conf
 docker build -t myapp:v1 .
+docker run --rm -d -p 8080:80 myapp:v1
 ```
 
 ---
 # Recreate
-
-```
-docker run --rm -d -p 8080:80 myapp:v1
-```
 
 Podemos comprobar que está desplegada con:
 `curl localhost:8080`
@@ -86,7 +73,6 @@ y como respuesta:
 
 Ahora vamos a por la `v2`.
 
-Seguimos dentro de la máquina virtual.
 ```
 vim index.html
 ```

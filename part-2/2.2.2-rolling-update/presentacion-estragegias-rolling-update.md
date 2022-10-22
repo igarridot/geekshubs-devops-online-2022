@@ -47,9 +47,7 @@ BBB
 ---
 # Rolling Update
 
-`vagrant up --provision-with microk8s`
-
-`vagrant ssh`
+`kind create cluster --name produccion --config kind/cluster.yml`
 
 ---
 ![bg auto opacity:.2](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)
