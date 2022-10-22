@@ -76,11 +76,11 @@ spec:
           mountPath: "/var/run/docker.sock"
         resources:
           limits:
-            memory: "512Mi"
-            cpu: "1"
+            memory: "8192Mi"
+            cpu: "8"
           requests:
-            memory: "512Mi"
-            cpu: "0.5"
+            memory: "2048Mi"
+            cpu: "4"
       volumes:
       - name: jenkins-data
         persistentVolumeClaim:

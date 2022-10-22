@@ -19,7 +19,7 @@ containerdConfigPatches:
   [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:${reg_port}"]
     endpoint = ["http://${reg_name}:5000"]
 networking:
-  apiServerAddress: "127.0.0.1"
+  apiServerAddress: "192.168.1.11"
   apiServerPort: 6443
 nodes:
 - role: control-plane
