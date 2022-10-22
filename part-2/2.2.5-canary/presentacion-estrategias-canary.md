@@ -80,7 +80,7 @@ Para ver los pods que están en un `label`.
 `kubectl get pod -l app=fifth-app`
 
 ```
-vagrant@ubuntu-bionic:~/canary$ kubectl get pod -l app=fifth-app
+$ kubectl get pod -l app=fifth-app
 NAME                        READY   STATUS    RESTARTS   AGE
 fifth-app-v1-6d9ddff5c6-259dp   1/1     Running   0          3m1s
 fifth-app-v1-6d9ddff5c6-btx74   1/1     Running   0          3m1s
