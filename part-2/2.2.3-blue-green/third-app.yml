@@ -62,7 +62,6 @@ spec:
   selector:
     app: third-app
     version: v1
-  type: NodePort
   ports:
     - protocol: TCP
       port: 80

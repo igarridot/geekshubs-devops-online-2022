@@ -42,15 +42,12 @@ Vamos a subir las imágenes de docker al registry local para que kubernetes las 
 ---
 # Blue/Green
 
-Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
+Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
-sudo docker save lb:v1 > lb:v1.tar
-sudo docker save third-app:v1 > third-app:v1.tar
-sudo docker save third-app:v2 > third-app:v2.tar
-microk8s.ctr image import lb:v1.tar
-microk8s.ctr image import third-app:v1.tar
-microk8s.ctr image import third-app:v2.tar
+docker push localhost:5001/lb:v1
+docker push localhost:5001/third-app:v1
+docker push localhost:5001/third-app:v2
 ```
 
 ---
