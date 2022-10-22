@@ -61,10 +61,24 @@ metadata:
 spec:
   selector:
     app: fifth-app
-  type: ClusterIP
-  externalIPs:
-  - 192.168.56.10
   ports:
     - protocol: TCP
       port: 80
       targetPort: 9000
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: loadbalancer
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: loadbalancer
+            port:
+              number: 80
