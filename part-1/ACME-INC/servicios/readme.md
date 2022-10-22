@@ -23,7 +23,7 @@ Crear un repositorio para acme-inc.
 ## Jenkins
 
 Seguir el wizard. (En el output de la consola saldrá el token)
-Instalar los plugins `docker`, `Docker Pipeline`, `docker-build-step` y reiniciar Jenkins.
+Instalar los plugins `Docker Pipeline` y reiniciar Jenkins.
 Añadir un nuevo pipeline de tipo `Multibranch Pipeline` apuntando al repositorio de Gogs mediante HTTP utilizando credenciales.
 
 ## Registry
