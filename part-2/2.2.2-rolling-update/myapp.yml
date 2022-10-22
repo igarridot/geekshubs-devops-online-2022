@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: myapp:v1
+        image: kind-registry:5000/myapp:v1
         ports:
         - containerPort: 9000
 

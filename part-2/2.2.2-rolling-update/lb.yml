@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: loadbalancer
-        image: lb:v1
+        image: kind-registry:5000/lb:v1
         ports:
         - containerPort: 80
 

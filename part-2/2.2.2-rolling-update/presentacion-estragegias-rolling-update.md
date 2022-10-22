@@ -47,55 +47,36 @@ BBB
 ---
 # Rolling Update
 
-`kind create cluster --name produccion --config kind/cluster.yaml`
+Creamos un clúster de Kubernetes con Kind
+`./kind/cluster.sh`
 
 ---
 ![bg auto opacity:.2](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Kubernetes_logo_without_workmark.svg/1200px-Kubernetes_logo_without_workmark.svg.png)
 # Rolling Update
 
 ---
-# Rolling Update
-
-_if_ vagrant -> Vamos a copiar los ficheros a la carpeta `/home` dentro de la máquina virtual.
-
-```
-cp -a /vagrant/part-2/ .
-```
-
-Y cambiamos al directorio de este apartado:
-
-```
-cd part-2/2.2.2-rolling-update
-```
-
----
 # Rollig Update
 
 Vamos a crear las imágenes de Docker necesarias primero:
 
-- `sudo docker build -t lb:v1 -f Dockerfile-lb .`
-- `sudo docker build -t myapp:v1 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/lb:v1 -f Dockerfile-lb .`
+- `docker build -t localhost:5001/myapp:v1 -f Dockerfile-myapp .`
 - Modificamos `index.html` y:
-- `sudo docker build -t myapp:v2 -f Dockerfile-myapp .`
+- `docker build -t localhost:5001/myapp:v2 -f Dockerfile-myapp .`
 
 Y comprobamos con:
 
-`sudo docker images`
+`docker images`
 
 ---
 # Rolling Update
 
-**ATENCIÓN**: Este paso únicamente es por usar `microk8s`.
-
-Vamos a copiarle las imágenes de docker a kubernetes para que las "encuentre".
+Vamos a subir las imágenes de docker al registry local para que kubernetes las "encuentre".
 
 ```
-sudo docker save myapp:v1 > myapp:v1.tar
-sudo docker save myapp:v2 > myapp:v2.tar
-sudo docker save lb:v1 > lb:v1.tar
-sudo microk8s.ctr image import myapp:v1.tar
-sudo microk8s.ctr image import myapp:v2.tar
-sudo microk8s.ctr image import lb:v1.tar
+docker push localhost:5001/lb:v1
+docker push localhost:5001/myapp:v1
+docker push localhost:5001/myapp:v2
 ```
 
 ---
